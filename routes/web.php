@@ -9,4 +9,6 @@ Route::group(['middleware' => 'auth'], function() {
         'as'   => 'administr.dashboard.index',
     ]);
 
+    Route::resource('/quizzes', 'QuizzesController');
+
 });

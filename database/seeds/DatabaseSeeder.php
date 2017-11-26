@@ -12,8 +12,9 @@ class DatabaseSeeder extends Seeder
      * @var array
      */
     protected $seeders = [
-        'administr_languages'   => LanguagesTableSeeder::class,
-        'users'                 => UsersSeeder::class,
+        'administr_languages' => LanguagesTableSeeder::class,
+        'users'               => UsersSeeder::class,
+        'quizzes'             => QuizzesSeeder::class,
     ];
 
     /**

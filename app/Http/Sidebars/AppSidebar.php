@@ -25,6 +25,13 @@ class AppSidebar implements SidebarExtender
                 $item->route($route);
             });
 
+            $group->item('Quizzes', function(Item $item) {
+                $route = 'quizzes.index';
+                $item->icon('fa fa-dashboard');
+
+                $item->route($route);
+            });
+
         });
 
         return $menu;
