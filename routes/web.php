@@ -6,7 +6,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::get('/', [
         'uses' => 'DashboardController@view',
-        'as'   => 'dashboard',
+        'as'   => 'administr.dashboard.index',
     ]);
-    
+
 });
