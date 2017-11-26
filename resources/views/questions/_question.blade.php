@@ -14,9 +14,16 @@
         </legend>
 
         <input type="hidden" name="question[{{ $index }}][type]" value="{{ $slug }}">
-        <input type="text" name="question[{{ $index }}][name]" id="question[{{ $index }}]" class="form-control">
+        <input type="hidden" name="question[{{ $index }}][type_id]" value="{{ $type_id }}">
 
-        <div class="answers" id="answers-{{ $index }}"></div>
+        <label for="question[{{ $index }}]">Question:</label>
+        <input type="text" name="question[{{ $index }}][value]" id="question[{{ $index }}]" class="form-control">
+
+        @if($slug !== 'text')
+        <label>Answers:</label>
+        <div class="answers list-group" id="answers-{{ $index }}">
+        </div>
+        @endif
     </fieldset>
 
 </div>

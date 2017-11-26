@@ -25,8 +25,10 @@
                                             Add Question <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu">
-                                            @foreach($question_types as $slug => $name)
-                                            <li class="add-question" data-type-slug="{{ $slug }}"><a href="#">{{ $name }}</a></li>
+                                            @foreach($question_types as $type)
+                                            <li class="add-question" data-type-slug="{{ $type->slug }}" data-type-id="{{ $type->id }}">
+                                                <a href="#">{{ $type->name }}</a>
+                                            </li>
                                             @endforeach
                                         </ul>
                                     </div>
@@ -54,9 +56,10 @@
         add: function() {
             $('#add-question').attr('disabled', 'disabled');
 
-            $.get('/quizzes/questions/form', {
+            $.get('/quizzes/questions/question', {
                 index: Question.questions,
                 slug: $(this).data('typeSlug'),
+                type_id: $(this).data('typeId'),
                 type: $(this).text(),
             }).done(function(result) {
                 $('#quiz-questions').append(result);
@@ -74,14 +77,32 @@
         }
     };
 
+    var Answer = {
+        add: function() {
+            $('.add-answer').attr('disabled', 'disabled');
+            var index = $(this).data('questionId');
+
+            $.get('/quizzes/questions/answer', {
+                index: index,
+            }).done(function(result) {
+                $('#answers-' + index).append(result);
+                Question.questions++;
+            }).fail(function(result) {
+                alert(result.responseJSON.error);
+            }).always(function() {
+                $('.add-answer').removeAttr('disabled');
+            });
+        },
+        remove: function() {
+            $(this).parents('.list-group-item').remove();
+        },
+    };
+
     $('.add-question').on('click', Question.add);
 
-    $('#quiz-questions').on('click', '.add-answer', function() {
-        var question = $(this).data('questionId');
-
-        alert('answer for q ' + question);
-    });
-
     $('#quiz-questions').on('click', '.remove-question', Question.remove);
+
+    $('#quiz-questions').on('click', '.add-answer', Answer.add);
+    $('#quiz-questions').on('click', '.remove-answer', Answer.remove);
 </script>
 @stop

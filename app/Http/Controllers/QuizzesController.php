@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Question;
 use App\Models\QuestionType;
 use App\Models\Quiz;
 use App\Http\Forms\QuizForm;
@@ -40,7 +41,7 @@ class QuizzesController extends AdminController
         $title = 'Create a Quiz';
         $this->title(['', 'Quizzes', $title]);
 
-        $question_types = QuestionType::pluck('name', 'slug');
+        $question_types = QuestionType::all(['id', 'slug', 'name']);
 
         return view('quizzes.form', compact('form', 'title', 'question_types'));
     }
@@ -88,7 +89,7 @@ class QuizzesController extends AdminController
         $title = 'Edit a Quiz';
         $this->title(['', 'Quizzes', $title]);
 
-        $question_types = QuestionType::pluck('name', 'slug');
+        $question_types = QuestionType::all(['id', 'slug', 'name']);
 
         return view('quizzes.form', compact('form', 'title', 'question_types'));
     }
@@ -101,6 +102,24 @@ class QuizzesController extends AdminController
     public function update($id, QuizForm $form)
     {
         $model = Quiz::findOrFail($id);
+
+        foreach($form->request()->input('question') as $question_id => $question) {
+            $answers = array_get($question, 'answers', []);
+
+            $question = Question::firstOrCreate([
+                'type_id' => $question['type_id'],
+                'quiz_id' => $id,
+                'id' => $question_id,
+            ], [
+                'value' => $question['value'],
+            ]);
+
+            foreach($answers as $answer) {
+                $question->answers()->create([
+                    'value' => $answer,
+                ]);
+            }
+        }
 
         if(!$model->update($form->request()->input('quiz'))) {
             flash()->error(sprintf('The quiz "%s" could not be updated.', $model->name));

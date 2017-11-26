@@ -14,21 +14,22 @@ use App\Http\Requests;
 class QuestionsController extends AdminController
 {
 
-    public function partialForm(Request $request)
+    public function question(Request $request)
     {
         $slug = $request->get('slug');
-        $view = 'questions._' . $slug;
 
-        if(!view()->exists($view)) {
-            return response()->json([
-                'error' => 'Could not create the question type.',
-            ], 404);
-        }
-
-        return view($view, [
+        return view('questions._question', [
             'index' => $request->get('index'),
             'type' => $request->get('type'),
+            'type_id' => $request->get('type_id'),
             'slug' => $slug,
+        ]);
+    }
+
+    public function answer(Request $request)
+    {
+        return view('questions._answer', [
+            'index' => $request->get('index'),
         ]);
     }
 
