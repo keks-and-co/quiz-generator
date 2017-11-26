@@ -7,6 +7,8 @@
     "require": {
         "php": ">=7.0.0",
         "administrcms/administr": "0.*",
+        "administrcms/form": "dev-master",
+        "administrcms/listview": "dev-master",
         "fideloper/proxy": "~3.3",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
