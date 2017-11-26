@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Administr{{ $pageTitle or '' }}</title>
+    <title>Quiz Generator{{ $pageTitle or '' }}</title>
 
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="/vendor/administr/bootstrap/css/bootstrap.min.css">
@@ -34,9 +34,9 @@
         <!-- Logo -->
         <a href="{{ route('administr.dashboard.index') }}" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>A</b>str</span>
+            <span class="logo-mini"><b>Q</b>G</span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>Admini</b>str</span>
+            <span class="logo-lg"><b>Quiz</b>Generator</span>
         </a>
 
         <!-- Header Navbar -->
