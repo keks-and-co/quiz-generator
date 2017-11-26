@@ -11,6 +11,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::resource('quizzes', 'QuizzesController');
     Route::resource('quizzes.questions', 'QuestionsController');
-    Route::get('/quizzes/questions/form', 'QuestionsController@partialForm');
+    Route::get('/quizzes/questions/question', 'QuestionsController@question');
+    Route::get('/quizzes/questions/answer', 'QuestionsController@answer');
 
 });
