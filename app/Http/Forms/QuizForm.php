@@ -16,8 +16,8 @@ class QuizForm extends Form
     {
         return [
             'quiz.name'      => 'required',
-            'quiz.starts_at' => 'required',
-            'quiz.ends_at'   => 'required|after:starts_at',
+            'quiz.starts_at' => 'required|before:quiz.ends_at',
+            'quiz.ends_at'   => 'required|after:quiz.starts_at',
             'quiz.per_page'   => 'required|integer|min:1',
         ];
     }
