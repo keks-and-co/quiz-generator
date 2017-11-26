@@ -4,9 +4,271 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "00ae911117c2735b577c922f7e0a0899",
-    "content-hash": "0ccf89d1cfaad9f3393ddd3d4d31483e",
+    "hash": "e9a0283b270edf4e53bdfcd3d8fbe27a",
+    "content-hash": "87bf6c85828da9f00fbe0cf749e8c928",
     "packages": [
+        {
+            "name": "administrcms/administr",
+            "version": "0.1.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/administrcms/administr.git",
+                "reference": "e1d018c94dcc774be7e43b5e5e13ce8c81d43a15"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/administrcms/administr/zipball/e1d018c94dcc774be7e43b5e5e13ce8c81d43a15",
+                "reference": "e1d018c94dcc774be7e43b5e5e13ce8c81d43a15",
+                "shasum": ""
+            },
+            "require": {
+                "administrcms/asset-manager": "*",
+                "administrcms/form": "*",
+                "administrcms/listview": "*",
+                "administrcms/localization": "*",
+                "administrcms/query-filters": "*",
+                "laracasts/flash": "1.3.*",
+                "laravel/framework": ">=5.2",
+                "maatwebsite/laravel-sidebar": "~2.1",
+                "php": ">=5.5.9"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Administr\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Miroslav Vitanov",
+                    "email": "mvvitanov@gmail.com"
+                }
+            ],
+            "description": "Administration package that allows for fast and flexible admin pages",
+            "time": "2017-02-06 09:31:45"
+        },
+        {
+            "name": "administrcms/asset-manager",
+            "version": "1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/administrcms/asset-manager.git",
+                "reference": "8df955d1d9a8cbb77e444a2c82279c1892955ae0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/administrcms/asset-manager/zipball/8df955d1d9a8cbb77e444a2c82279c1892955ae0",
+                "reference": "8df955d1d9a8cbb77e444a2c82279c1892955ae0",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": ">=5.2",
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "codeclimate/php-test-reporter": "dev-master",
+                "phpunit/phpunit": "4.8.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Administr\\Assets\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Miroslav Vitanov",
+                    "email": "mvvitanov@gmail.com"
+                }
+            ],
+            "time": "2016-09-08 06:47:53"
+        },
+        {
+            "name": "administrcms/filters",
+            "version": "0.0.10",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/administrcms/filters.git",
+                "reference": "8877059c8e42d777bed95564a40066ecf867c64c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/administrcms/filters/zipball/8877059c8e42d777bed95564a40066ecf867c64c",
+                "reference": "8877059c8e42d777bed95564a40066ecf867c64c",
+                "shasum": ""
+            },
+            "require": {
+                "administrcms/form": "*",
+                "laravel/framework": ">=5.2",
+                "php": ">=5.5.9"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Administr\\Filters\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Miroslav Vitanov",
+                    "email": "mvvitanov@gmail.com"
+                }
+            ],
+            "time": "2017-02-06 15:52:59"
+        },
+        {
+            "name": "administrcms/form",
+            "version": "0.1.44",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/administrcms/form.git",
+                "reference": "01926b669cdd7207cdd97b892272e37a52cbccbf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/administrcms/form/zipball/01926b669cdd7207cdd97b892272e37a52cbccbf",
+                "reference": "01926b669cdd7207cdd97b892272e37a52cbccbf",
+                "shasum": ""
+            },
+            "require": {
+                "administrcms/asset-manager": "*",
+                "administrcms/localization": "*",
+                "laravel/framework": ">=5.2",
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "codeclimate/php-test-reporter": "dev-master",
+                "mockery/mockery": "^0.9.4",
+                "phpunit/phpunit": "4.8.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Administr\\Form\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Miroslav Vitanov",
+                    "email": "mvvitanov@gmail.com"
+                }
+            ],
+            "description": "Form package for the administrcms as good as standalone laravel package",
+            "time": "2017-02-02 14:26:45"
+        },
+        {
+            "name": "administrcms/listview",
+            "version": "0.1.16",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/administrcms/listview.git",
+                "reference": "4d6de9d10dbad4646dfd6a62c487c7e6977253f2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/administrcms/listview/zipball/4d6de9d10dbad4646dfd6a62c487c7e6977253f2",
+                "reference": "4d6de9d10dbad4646dfd6a62c487c7e6977253f2",
+                "shasum": ""
+            },
+            "require": {
+                "administrcms/filters": "*",
+                "administrcms/form": "*",
+                "laravel/framework": ">=5.2",
+                "nesbot/carbon": "^1.21",
+                "php": ">=5.5.9"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Administr\\ListView\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Miroslav Vitanov",
+                    "email": "mvvitanov@gmail.com"
+                }
+            ],
+            "time": "2017-10-26 18:13:47"
+        },
+        {
+            "name": "administrcms/localization",
+            "version": "0.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/administrcms/localization.git",
+                "reference": "095cd781cf44310910192071306834abc61c9d19"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/administrcms/localization/zipball/095cd781cf44310910192071306834abc61c9d19",
+                "reference": "095cd781cf44310910192071306834abc61c9d19",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": ">=5.2",
+                "php": ">=5.5.9"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Administr\\Localization\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Miroslav Vitanov",
+                    "email": "mvvitanov@gmail.com"
+                }
+            ],
+            "time": "2016-11-17 14:55:19"
+        },
+        {
+            "name": "administrcms/query-filters",
+            "version": "0.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/administrcms/query-filters.git",
+                "reference": "188a1fa1003a7761b3902aea6aba0d5acd8c4168"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/administrcms/query-filters/zipball/188a1fa1003a7761b3902aea6aba0d5acd8c4168",
+                "reference": "188a1fa1003a7761b3902aea6aba0d5acd8c4168",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": ">=5.2",
+                "php": ">=5.5.9"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Administr\\QueryFilters\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Miroslav Vitanov",
+                    "email": "mvvitanov@gmail.com"
+                }
+            ],
+            "description": "Query filters for an Eloquent model",
+            "time": "2016-10-11 16:44:19"
+        },
         {
             "name": "dnoegel/php-xdg-base-dir",
             "version": "0.1",
@@ -408,6 +670,49 @@
             "time": "2015-04-20 18:58:01"
         },
         {
+            "name": "laracasts/flash",
+            "version": "1.3.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laracasts/flash.git",
+                "reference": "e0a048b911092e15920ce66f4b6a54b6befa30a3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laracasts/flash/zipball/e0a048b911092e15920ce66f4b6a54b6befa30a3",
+                "reference": "e0a048b911092e15920ce66f4b6a54b6befa30a3",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5.0",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Laracasts\\Flash": "src/"
+                },
+                "files": [
+                    "src/Laracasts/Flash/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeffrey Way",
+                    "email": "jeffrey@laracasts.com"
+                }
+            ],
+            "description": "Easy flash notifications",
+            "time": "2015-12-22 15:52:08"
+        },
+        {
             "name": "laravel/framework",
             "version": "v5.5.21",
             "source": {
@@ -749,6 +1054,58 @@
                 "rest"
             ],
             "time": "2017-06-12 11:04:56"
+        },
+        {
+            "name": "maatwebsite/laravel-sidebar",
+            "version": "2.1.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Maatwebsite/Laravel-Sidebar.git",
+                "reference": "f2f624cab2d91870218ec4296651f78383e5fb83"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Maatwebsite/Laravel-Sidebar/zipball/f2f624cab2d91870218ec4296651f78383e5fb83",
+                "reference": "f2f624cab2d91870218ec4296651f78383e5fb83",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/cache": "~5.0",
+                "illuminate/container": "~5.0",
+                "illuminate/contracts": "~5.0",
+                "illuminate/routing": "~5.0",
+                "illuminate/support": "~5.0",
+                "illuminate/view": "~5.0",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9",
+                "phpunit/phpunit": "~4.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Maatwebsite\\Sidebar\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL"
+            ],
+            "authors": [
+                {
+                    "name": "Maatwebsite.nl",
+                    "email": "patrick@maatwebsite.nl"
+                }
+            ],
+            "description": "A sidebar builder for Laravel",
+            "keywords": [
+                "acp",
+                "laravel",
+                "menu",
+                "sidebar"
+            ],
+            "time": "2017-03-23 19:32:44"
         },
         {
             "name": "monolog/monolog",
