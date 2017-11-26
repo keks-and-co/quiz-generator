@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'prefix'    => 'admin',
-    'viewPath' => 'admin',
+    'prefix'    => '',
+    'viewPath' => '',
     'modules'   => [
         'form',
     ],
