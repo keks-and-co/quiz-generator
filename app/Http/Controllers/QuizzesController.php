@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\QuestionType;
 use App\Models\Quiz;
 use App\Http\Forms\QuizForm;
 use App\Http\ListViews\QuizzesListView;
@@ -39,7 +40,9 @@ class QuizzesController extends AdminController
         $title = 'Create a Quiz';
         $this->title(['', 'Quizzes', $title]);
 
-        return view('quizzes.form', compact('form', 'title'));
+        $question_types = QuestionType::pluck('name', 'slug');
+
+        return view('quizzes.form', compact('form', 'title', 'question_types'));
     }
 
     /**
@@ -85,7 +88,9 @@ class QuizzesController extends AdminController
         $title = 'Edit a Quiz';
         $this->title(['', 'Quizzes', $title]);
 
-        return view('quizzes.form', compact('form', 'title'));
+        $question_types = QuestionType::pluck('name', 'slug');
+
+        return view('quizzes.form', compact('form', 'title', 'question_types'));
     }
 
     /**
