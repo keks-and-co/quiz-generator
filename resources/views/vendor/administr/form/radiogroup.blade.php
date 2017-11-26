@@ -1,5 +1,7 @@
-<label for="{{ $field->getName() }}">{{ $field->getLabel() }}</label>
-@foreach($field->radios() as $radio)
-    <label class="radio-inline">{!! $radio->render() !!}</label>
-@endforeach
-<span>{{ $errors->first($field->getName()) }}</span>
+<div class="form-group">
+    <label for="{{ $field->getName() }}" class="control-label">{{ $field->getLabel() }}</label> <br>
+    @foreach($field->radios() as $radio)
+        {!! $radio->setView('administr/form::radio_inline')->render() !!}
+    @endforeach
+    @include('administr/form::_error')
+</div>

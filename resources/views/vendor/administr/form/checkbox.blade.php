@@ -1,3 +1,9 @@
-<label for="{{ $field->getName() }}">{{ $field->getLabel() }}</label>
-<input type="checkbox" {!! $field->attributes() !!} id="{{ $field->getName() }}" name="{{ $field->getName() }}" value="{{ $field->getValue() }}">
-<span>{{ $errors->first($field->getName()) }}</span>
+<div class="{{ $errors->has($field->getEscapedName()) ? 'has-error' : '' }}">
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" id="{{ $field->getEscapedName() }}" name="{{ $field->getName() }}" value="{{ $field->getValue() }}" {!! $field->attributes() !!}>
+            {{ $field->getLabel() }}
+        </label>
+        @include('administr/form::_error')
+    </div>
+</div>
