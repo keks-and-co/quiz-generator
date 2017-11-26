@@ -1,4 +1,4 @@
-<div class=" @if($errors->has($field->getName())) has-error @endif ">
+<div class=" @if($errors->has($field->getEscapedName())) has-error @endif ">
     <div class="radio">
         <label>
             <input type="radio" id="{{ $field->getName() }}" name="{{ $field->getName() }}" value="{{ $field->getValue() }}" {!! $field->attributes() !!}>

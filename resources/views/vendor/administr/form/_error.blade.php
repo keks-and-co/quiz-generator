@@ -1,3 +1,3 @@
-@if($errors->has($field->getName()))
-    <span class="help-block">{{ $errors->first($field->getName()) }}</span>
+@if($errors->has($field->getEscapedName()))
+    <span class="help-block">{{ $errors->first($field->getEscapedName()) }}</span>
 @endif
