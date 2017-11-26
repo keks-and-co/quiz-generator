@@ -26,6 +26,11 @@ class Quiz extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
+    }
+
     public function getIsActiveAttribute()
     {
         return Carbon::now()->between($this->starts_at, $this->ends_at);
