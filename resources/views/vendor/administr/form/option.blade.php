@@ -1,0 +1,1 @@
+<option id="{{ $field->getName() }}" name="{{ $field->getName() }}" {!! $field->attributes() !!}>{{ $field->getLabel() }}</option>
