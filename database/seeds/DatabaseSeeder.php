@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
         'administr_languages' => LanguagesTableSeeder::class,
         'users'               => UsersSeeder::class,
         'quizzes'             => QuizzesSeeder::class,
+        'question_types'      => QuestionTypesSeeder::class,
     ];
 
     /**
