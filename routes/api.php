@@ -16,3 +16,13 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/quiz/{id}', function($id) {
+    $quiz = \App\Models\Quiz::with('questions.answers', 'questions.type')->find($id);
+    
+    return fractal()
+        ->item($quiz)
+        ->transformWith(new \App\Http\Transformers\QuizTransformer())
+        ->parseIncludes(['questions', 'questions.type', 'questions.answers'])
+        ->toArray();
+});
