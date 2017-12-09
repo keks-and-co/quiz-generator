@@ -7,6 +7,7 @@ use App\Http\Forms\QuestionForm;
 use App\Http\ListViews\QuestionsListView;
 
 use Administr\Controllers\AdminController;
+use App\Models\QuestionAnswer;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Requests;
@@ -33,98 +34,27 @@ class QuestionsController extends AdminController
         ]);
     }
 
-    /**
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function deleteQuestion($question_id)
     {
-        $list = new QuestionsListView(
-            Question::paginate(20)
-        );
+        $question = Question::findOrFail($question_id);
 
-        $title = '';
-        $this->title(['', $title]);
-
-        return view('questions.list', compact('list', 'title'));
-    }
-
-    /**
-     * @param QuestionForm $form
-     * @return \Illuminate\Http\Response
-     */
-    public function create(QuestionForm $form)
-    {
-        $form->action = route('.questions.store');
-        $form->method = 'post';
-
-        $title = '';
-        $this->title(['', $title]);
-
-        return view('questions.form', compact('form', 'title'));
-    }
-
-    /**
-     * @param QuestionForm $form
-     * @return \Illuminate\Http\Response
-     */
-    public function store(QuestionForm $form)
-    {
-        $model = Question::create($form->all());
-
-        if(!$model) {
-            flash()->error('');
-
-            return back()->withInput($form->all());
+        if($question->answers()->delete() && $question->delete()) {
+            return response(['status' => 'success']);
         }
 
-        flash()->success('');
-
-        return redirect()->route('.questions.index');
+        return response(['status' => 'error', Response::HTTP_NOT_FOUND]);
     }
 
-    /**
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function deleteAnswer($question_id, $answer_id)
     {
-        //
-    }
+        $answer = QuestionAnswer::where('question_id', $question_id)
+            ->where('id', $answer_id)
+            ->delete();
 
-    /**
-     * @param  int $id
-     * @param QuestionForm $form
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id, QuestionForm $form)
-    {
-        $form->action = route('.questions.update', [$id]);
-        $form->method = 'put';
-        $form->dataSource(Question::findOrFail($id));
-
-        $title = '';
-        $this->title(['', $title]);
-
-        return view('questions.form', compact('form', 'title'));
-    }
-
-    /**
-     * @param  int $id
-     * @param QuestionForm $form
-     * @return \Illuminate\Http\Response
-     */
-    public function update($id, QuestionForm $form)
-    {
-        $model = Question::findOrFail($id);
-
-        if(!$model->update($form->all())) {
-            flash()->error('');
-
-            return back()->withInput($form->all());
+        if($answer) {
+            return response(['status' => 'success']);
         }
 
-        flash()->success('');
-
-        return redirect()->route('.questions.index');
+        return response(['status' => 'error', Response::HTTP_NOT_FOUND]);
     }
 }

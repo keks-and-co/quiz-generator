@@ -80,7 +80,30 @@
             });
         },
         remove: function() {
+            if(!confirm('Do you really want to remove this question?')) {
+                return false;
+            }
+
             var questionId = $(this).data('questionId');
+            var exists = parseInt($(this).data('exists'));
+
+            if(exists) {
+                $.ajax({
+                    url: '/quizzes/questions/' + questionId,
+                    data: {
+                        '_token': '{{ csrf_token() }}',
+                    },
+                    method: 'DELETE',
+                })
+                .done(function() {
+                    $('.question[data-question-id="' + questionId + '"]').remove();
+                })
+                .fail(function() {
+                    alert('An error occured while deleting the question, please try again.');
+                });
+
+                return;
+            }
 
             $('.question[data-question-id="' + questionId + '"]').remove();
         }
@@ -104,7 +127,34 @@
             });
         },
         remove: function() {
-            $(this).parents('.list-group-item').remove();
+            if(!confirm('Do you really want to remove this answer?')) {
+                return false;
+            }
+
+            var answer = $(this);
+            var questionId = answer.data('questionId');
+            var answerId = answer.data('answerId');
+            var exists = parseInt(answer.data('exists'));
+
+            if(exists) {
+                $.ajax({
+                    url: '/quizzes/questions/' + questionId + '/answers/' + answerId,
+                    data: {
+                        '_token': '{{ csrf_token() }}',
+                    },
+                    method: 'DELETE',
+                })
+                .done(function() {
+                    answer.parents('.list-group-item').remove();
+                })
+                .fail(function() {
+                    alert('An error occured while deleting the answer, please try again.');
+                });
+
+                return;
+            }
+
+            answer.parents('.list-group-item').remove();
         },
     };
 
