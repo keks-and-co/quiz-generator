@@ -63,6 +63,7 @@
                 type: $(this).text(),
             }).done(function(result) {
                 $('#quiz-questions').append(result);
+                $('#quiz-questions .question:last-child .question-value').focus();
                 Question.questions++;
             }).fail(function(result) {
                 alert(result.responseJSON.error);
@@ -86,6 +87,7 @@
                 index: index,
             }).done(function(result) {
                 $('#answers-' + index).append(result);
+                $('#answers-' + index + ' .list-group-item input').focus();
                 Question.questions++;
             }).fail(function(result) {
                 alert(result.responseJSON.error);
