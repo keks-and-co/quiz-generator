@@ -35,7 +35,15 @@
                                 </div>
                             </legend>
 
-                            <div id="quiz-questions"></div>
+                            <div id="quiz-questions">
+                                @if(isset($quiz))
+                                    @foreach($quiz->questions as $question)
+                                        @include('questions._question', [
+                                            'question' => $question,
+                                        ])
+                                    @endforeach
+                                @endif
+                            </div>
                         </fieldset>
 
                         {!! $form->renderField('save') !!}
