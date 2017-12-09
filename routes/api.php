@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Quiz;
 use Illuminate\Http\Request;
 
 /*
@@ -18,11 +19,24 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/quiz/{id}', function($id) {
-    $quiz = \App\Models\Quiz::with('questions.answers', 'questions.type')->find($id);
-    
-    return fractal()
-        ->item($quiz)
+    $quiz = fractal()
+        ->item(
+            Quiz::with('questions.answers', 'questions.type')
+                ->find($id)
+        )
         ->transformWith(new \App\Http\Transformers\QuizTransformer())
         ->parseIncludes(['questions', 'questions.type', 'questions.answers'])
         ->toArray();
+
+    $questionsCount = count($quiz['questions']);
+
+    if($questionsCount <= 0) {
+        $questionsCount = 1;
+    }
+
+    $chunkSize = round($questionsCount / $quiz['per_page']);
+
+    $quiz['questions'] = array_chunk($quiz['questions'], $chunkSize);
+    
+    return $quiz;
 });
