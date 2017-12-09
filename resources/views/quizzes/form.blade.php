@@ -58,6 +58,8 @@
 @stop
 
 @section('scripts')
+<script src="{{ url('plugins/momentjs/moment.js') }}"></script>
+<script src="{{ url('plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
 <script type="text/javascript">
     var Question = {
         questions: 1,
@@ -158,11 +160,28 @@
         },
     };
 
-    $('.add-question').on('click', Question.add);
+    $(function() {
+        $('#quiz_starts_at').datetimepicker({
+            format: 'Y-MM-DD HH:mm:ss',
+        });
+        $('#quiz_ends_at').datetimepicker({
+            format: 'Y-MM-DD HH:mm:ss',
+            minDate: $('#quiz_starts_at').val(),
+        });
+        $('#quiz_starts_at').on('dp.change', function (e) {
+            $('#quiz_ends_at').data('DateTimePicker').minDate(e.date);
+        });
 
-    $('#quiz-questions').on('click', '.remove-question', Question.remove);
+        $('.add-question').on('click', Question.add);
 
-    $('#quiz-questions').on('click', '.add-answer', Answer.add);
-    $('#quiz-questions').on('click', '.remove-answer', Answer.remove);
+        $('#quiz-questions').on('click', '.remove-question', Question.remove);
+
+        $('#quiz-questions').on('click', '.add-answer', Answer.add);
+        $('#quiz-questions').on('click', '.remove-answer', Answer.remove);
+    });
 </script>
+@stop
+
+@section('styles')
+    <link type="text/css" href="{{ url('plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet">
 @stop
