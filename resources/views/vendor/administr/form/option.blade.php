@@ -1,1 +1,1 @@
-<option id="{{ $field->getName() }}" name="{{ $field->getName() }}" {!! $field->attributes() !!}>{{ $field->getLabel() }}</option>
+<option id="{{ $field->getEscapedName('_') }}" name="{{ $field->getName() }}" {!! $field->attributes() !!}>{{ $field->getLabel() }}</option>
