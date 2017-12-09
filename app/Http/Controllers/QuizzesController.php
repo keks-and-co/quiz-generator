@@ -53,7 +53,7 @@ class QuizzesController extends AdminController
     public function store(QuizForm $form)
     {
         $data = $form->request()->input('quiz');
-        $model = Quiz::create($data);
+        $model = Quiz::create($data + ['user_id' => auth()->id()]);
 
         if(!$model) {
             flash()->error(sprintf('The quiz "%s" could not be saved.', $data['name']));
