@@ -22,11 +22,7 @@ class QuizzesListView extends ListView
                 'sortable' => true,
             ])
             ->text('is_active', 'Is active', function(Column $column) {
-                $column->format(function(array $row) {
-                    return $row['is_active'];
-                }, 'yesno');
-
-                $column->set('sortable', true);
+                $column->format('castBool:is_active', 'yesno');
             })
             ->actions('', function(Actions $actions) {
                 $actions
