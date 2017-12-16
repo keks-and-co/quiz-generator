@@ -80,7 +80,11 @@ class QuizzesController extends AdminController
 
         flash()->success(sprintf('The quiz "%s" was successfully saved!', $data['name']));
 
-        return redirect()->route('quizzes.index');
+        return redirect()->route('quizzes.index', [
+            'sort' => [
+                'ends_at' => 'desc',
+            ],
+        ]);
     }
 
     /**
@@ -147,7 +151,11 @@ class QuizzesController extends AdminController
 
         flash()->success(sprintf('The quiz "%s" was updated successfully!', $model->name));
 
-        return redirect()->route('quizzes.index');
+        return redirect()->route('quizzes.index', [
+            'sort' => [
+                'ends_at' => 'desc',
+            ],
+        ]);
     }
 
     protected function saveAnswers(Question $question, array $answers)
