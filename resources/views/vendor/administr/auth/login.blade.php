@@ -9,8 +9,9 @@
 
             {!! $form->render() !!}
 
-            <a href="#">I forgot my password</a><br>
-            <a href="#" class="text-center">Register a new membership</a>
+            <br>
+
+            <a href="{{ route('admin.registration') }}" class="text-center">Register a new membership</a>
 
         </div><!-- /.login-box-body -->
     </div><!-- /.login-box -->
