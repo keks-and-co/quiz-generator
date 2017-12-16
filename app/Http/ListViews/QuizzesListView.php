@@ -24,6 +24,9 @@ class QuizzesListView extends ListView
             ->text('is_active', 'Is active', function (Column $column) {
                 $column->format('castBool:is_active', 'yesno');
             })
+            ->text('is_anonymous', 'Is anonymous', function (Column $column) {
+                $column->format('castBool:is_anonymous', 'yesno');
+            })
             ->actions('', function (Actions $actions) {
                 $actions
                     ->action('add', 'Create')

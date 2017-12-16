@@ -9,9 +9,9 @@ use Illuminate\Database\Eloquent\Model;
 class Quiz extends Model
 {
     use Filterable;
-    
+
     protected $fillable = [
-        'user_id', 'per_page', 'name', 'starts_at', 'ends_at',
+        'user_id', 'per_page', 'name', 'starts_at', 'ends_at', 'is_anonymous',
     ];
 
     protected $appends = [
@@ -19,9 +19,10 @@ class Quiz extends Model
     ];
 
     protected $casts = [
-        'starts_at' => 'datetime',
-        'ends_at'   => 'datetime',
-        'is_active' => 'boolean',
+        'starts_at'    => 'datetime',
+        'ends_at'      => 'datetime',
+        'is_active'    => 'boolean',
+        'is_anonymous' => 'boolean',
     ];
 
     public function user()

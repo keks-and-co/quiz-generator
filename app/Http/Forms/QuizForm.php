@@ -2,6 +2,7 @@
 
 namespace App\Http\Forms;
 
+use Administr\Form\Field\RadioGroup;
 use Administr\Form\Form;
 use Administr\Form\FormBuilder;
 
@@ -35,7 +36,11 @@ class QuizForm extends Form
                     ->text('quiz[name]', 'Name')
                     ->datetime('quiz[starts_at]', 'Starts at')
                     ->datetime('quiz[ends_at]', 'Ends at')
-                    ->number('quiz[per_page]', 'Questions per page');
+                    ->number('quiz[per_page]', 'Questions per page')
+                    ->radioGroup('quiz[is_anonymous]', 'Is anonymous', function(RadioGroup $group) {
+                        $group->radio('yes', ['value' => 1]);
+                        $group->radio('no', ['value' => 0]);
+                    });
             })
             ->group('questions', 'Questions', function(FormBuilder $builder) {
 
