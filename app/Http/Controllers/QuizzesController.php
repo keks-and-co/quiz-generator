@@ -60,22 +60,23 @@ class QuizzesController extends AdminController
         $data = $form->request()->input('quiz');
         $model = Quiz::create($data + ['user_id' => auth()->id()]);
 
-        if(!$model) {
+        if (!$model) {
             flash()->error(sprintf('The quiz "%s" could not be saved.', $data['name']));
 
             return back()->withInput($form->request()->all());
         }
 
-        foreach($form->request()->input('question', []) as $question_id => $question) {
+        foreach ($form->request()->input('question', []) as $question_id => $question) {
             $answers = array_get($question, 'answers', []);
+            $type = $question['type'];
 
             $question = Question::create([
                 'type_id' => $question['type_id'],
                 'quiz_id' => $model->id,
-                'value' => $question['value'],
+                'value'   => $question['value'],
             ]);
 
-            $this->saveAnswers($question, $answers);
+            $this->saveAnswers($question, $answers, $type);
         }
 
         flash()->success(sprintf('The quiz "%s" was successfully saved!', $data['name']));
@@ -88,7 +89,7 @@ class QuizzesController extends AdminController
     }
 
     /**
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -129,21 +130,22 @@ class QuizzesController extends AdminController
         $model = Quiz::where('user_id', auth()->id())
             ->findOrFail($id);
 
-        foreach($form->request()->input('question', []) as $question_id => $question) {
+        foreach ($form->request()->input('question', []) as $question_id => $question) {
             $answers = array_get($question, 'answers', []);
+            $type = $question['type'];
 
             $question = Question::firstOrCreate([
                 'type_id' => $question['type_id'],
                 'quiz_id' => $id,
-                'id' => $question_id,
+                'id'      => $question_id,
             ], [
                 'value' => $question['value'],
             ]);
 
-            $this->saveAnswers($question, $answers);
+            $this->saveAnswers($question, $answers, $type);
         }
 
-        if(!$model->update($form->request()->input('quiz'))) {
+        if (!$model->update($form->request()->input('quiz'))) {
             flash()->error(sprintf('The quiz "%s" could not be updated.', $model->name));
 
             return back()->withInput($form->all());
@@ -158,11 +160,18 @@ class QuizzesController extends AdminController
         ]);
     }
 
-    protected function saveAnswers(Question $question, array $answers)
+    protected function saveAnswers(Question $question, array $answers, $type = 'text')
     {
-        foreach($answers as $id => $answer) {
+        if ($type == 'range') {
+            $answers = [
+                min($answers),
+                max($answers),
+            ];
+        }
+
+        foreach ($answers as $id => $answer) {
             QuestionAnswer::updateOrCreate([
-                'id' => $id,
+                'id'          => $id,
                 'question_id' => $question->id,
             ], [
                 'value' => $answer,
