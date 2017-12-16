@@ -7,6 +7,8 @@
         </div><!-- /.login-logo -->
         <div class="login-box-body">
 
+            @include('flash::message')
+
             {!! $form->render() !!}
 
             <br>
