@@ -2,7 +2,16 @@
 
 Auth::routes();
 
-Route::group(['middleware' => 'auth'], function() {
+Route::get('/registration', [
+    'as'   => 'admin.registration',
+    'uses' => 'Auth\RegisterController@showRegistrationForm',
+]);
+Route::post('/registration', [
+    'as'   => 'admin.registration',
+    'uses' => 'Auth\RegisterController@register',
+]);
+
+Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/', [
         'uses' => 'DashboardController@view',

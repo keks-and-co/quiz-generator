@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Forms\RegistrationForm;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -67,5 +68,19 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    public function showRegistrationForm()
+    {
+        $form = app(RegistrationForm::class);
+        $form->method = 'post';
+        $form->action = route('admin.registration');
+
+        return view('administr::auth.register', compact('form'));
+    }
+
+    public function redirectTo()
+    {
+        return route('administr.dashboard.index');
     }
 }
