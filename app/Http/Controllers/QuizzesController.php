@@ -63,7 +63,7 @@ class QuizzesController extends AdminController
             return back()->withInput($form->request()->all());
         }
 
-        foreach($form->request()->input('question') as $question_id => $question) {
+        foreach($form->request()->input('question', []) as $question_id => $question) {
             $answers = array_get($question, 'answers', []);
 
             $question = Question::create([
@@ -122,7 +122,7 @@ class QuizzesController extends AdminController
         $model = Quiz::where('user_id', auth()->id())
             ->findOrFail($id);
 
-        foreach($form->request()->input('question') as $question_id => $question) {
+        foreach($form->request()->input('question', []) as $question_id => $question) {
             $answers = array_get($question, 'answers', []);
 
             $question = Question::firstOrCreate([
