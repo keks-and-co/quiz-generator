@@ -166,7 +166,7 @@
         });
         $('#quiz_ends_at').datetimepicker({
             format: 'Y-MM-DD HH:mm:ss',
-            minDate: $('#quiz_starts_at').val(),
+            minDate: $('#quiz_starts_at').val() || moment().format('Y-MM-DD HH:mm:ss'),
         });
         $('#quiz_starts_at').on('dp.change', function (e) {
             $('#quiz_ends_at').data('DateTimePicker').minDate(e.date);
