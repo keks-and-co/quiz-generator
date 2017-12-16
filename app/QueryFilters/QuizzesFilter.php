@@ -16,17 +16,25 @@ class QuizzesFilter extends Filter
 
     public function startsAt($value)
     {
-        return $this->builder->whereBetween('starts_at', [
-            Carbon::parse($value)->startOfDay(),
-            Carbon::parse($value)->endOfDay(),
-        ]);
+        try {
+            return $this->builder->whereBetween('starts_at', [
+                Carbon::parse($value)->startOfDay(),
+                Carbon::parse($value)->endOfDay(),
+            ]);
+        } catch (\Exception $e) {
+            return $this->builder;
+        }
     }
 
     public function endsAt($value)
     {
-        return $this->builder->whereBetween('ends_at', [
-            Carbon::parse($value)->startOfDay(),
-            Carbon::parse($value)->endOfDay(),
-        ]);
+        try {
+            return $this->builder->whereBetween('ends_at', [
+                Carbon::parse($value)->startOfDay(),
+                Carbon::parse($value)->endOfDay(),
+            ]);
+        } catch (\Exception $e) {
+            return $this->builder;
+        }
     }
 }
