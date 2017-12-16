@@ -21,7 +21,8 @@ class QuizzesController extends AdminController
     public function index()
     {
         $list = new QuizzesListView(
-            Quiz::paginate(20)
+            Quiz::where('user_id', auth()->id())
+                ->paginate(20)
         );
 
         $title = 'Quizzes';
@@ -95,7 +96,9 @@ class QuizzesController extends AdminController
      */
     public function edit($id, QuizForm $form)
     {
-        $quiz = Quiz::with('questions.answers', 'questions.type')->findOrFail($id);
+        $quiz = Quiz::with('questions.answers', 'questions.type')
+            ->where('user_id', auth()->id())
+            ->findOrFail($id);
 
         $form->action = route('quizzes.update', [$id]);
         $form->method = 'put';
@@ -116,7 +119,8 @@ class QuizzesController extends AdminController
      */
     public function update($id, QuizForm $form)
     {
-        $model = Quiz::findOrFail($id);
+        $model = Quiz::where('user_id', auth()->id())
+            ->findOrFail($id);
 
         foreach($form->request()->input('question') as $question_id => $question) {
             $answers = array_get($question, 'answers', []);
