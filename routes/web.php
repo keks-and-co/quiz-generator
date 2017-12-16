@@ -18,6 +18,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('quizzes', 'QuizzesController');
     Route::resource('quizzes.questions', 'QuestionsController');
+    Route::resource('quizzes.answers', 'QuizAnswersController');
     Route::get('/quizzes/questions/question', 'QuestionsController@question');
     Route::get('/quizzes/questions/answer', 'QuestionsController@answer');
     Route::delete('/quizzes/questions/{question}', 'QuestionsController@deleteQuestion');

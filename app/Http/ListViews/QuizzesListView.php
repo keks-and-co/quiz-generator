@@ -40,6 +40,13 @@ class QuizzesListView extends ListView
                     ->define(function (Action $action, array $row) {
                         $action->url(route('quizzes.edit', [$row['id']]));
                     });
+
+                $actions
+                    ->action('answers', '')
+                    ->icon('fa fa-file-o')
+                    ->define(function (Action $action, array $row) {
+                        $action->url(route('quizzes.answers.index', [$row['id']]));
+                    });
             });
     }
 
