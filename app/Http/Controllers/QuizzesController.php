@@ -10,18 +10,21 @@ use App\Http\Forms\QuizForm;
 use App\Http\ListViews\QuizzesListView;
 
 use Administr\Controllers\AdminController;
+use App\QueryFilters\QuizzesFilter;
 use Illuminate\Http\Response;
 use App\Http\Requests;
 
 class QuizzesController extends AdminController
 {
     /**
-     * @return \Illuminate\Http\Response
+     * @param QuizzesFilter $filters
+     * @return Response
      */
-    public function index()
+    public function index(QuizzesFilter $filters)
     {
         $list = new QuizzesListView(
             Quiz::where('user_id', auth()->id())
+                ->filter($filters)
                 ->paginate(20)
         );
 

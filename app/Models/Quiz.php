@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use Administr\QueryFilters\Filterable;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Quiz extends Model
 {
+    use Filterable;
+    
     protected $fillable = [
         'user_id', 'per_page', 'name', 'starts_at', 'ends_at',
     ];

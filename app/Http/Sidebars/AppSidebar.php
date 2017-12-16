@@ -29,7 +29,11 @@ class AppSidebar implements SidebarExtender
                 $route = 'quizzes.index';
                 $item->icon('fa fa-dashboard');
 
-                $item->route($route);
+                $item->route($route, [
+                    'sort' => [
+                        'ends_at' => 'desc',
+                    ]
+                ]);
             });
 
         });
