@@ -1,5 +1,9 @@
 <div style="padding: 20px;">
     <form>
+        @foreach(request()->get('sort', []) as $field => $direction)
+            {!! (new \Administr\Form\Field\Hidden('sort[' . $field . ']', $direction))->render() !!}
+        @endforeach
+
         @foreach(collect($builder->fields())->chunk(3) as $fields)
             <div class="row">
                 @foreach($fields as $field)
