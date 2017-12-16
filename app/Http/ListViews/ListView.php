@@ -8,9 +8,9 @@ class ListView extends BaseListView
 {
     public function __construct($dataSource = null)
     {
-        parent::__construct($dataSource);
-
         $this->class = 'table table-bordered table-hover table-striped';
         $this->setRequest(request());
+
+        parent::__construct($dataSource);
     }
 }
