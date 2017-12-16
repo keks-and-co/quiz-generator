@@ -5,9 +5,7 @@
     <thead>
         <tr>
             @foreach($columns as $column)
-                @if($column->visible())
-                    @include('administr/listview::_column')
-                @endif
+                @includeWhen($column->visible(), 'administr/listview::_column')
             @endforeach
         </tr>
     </thead>
@@ -23,9 +21,7 @@
     <tfoot>
         <tr>
             @foreach($columns as $column)
-                @if($column->visible())
-                    @include('administr/listview::_column')
-                @endif
+                @includeWhen($column->visible(), 'administr/listview::_column')
             @endforeach
         </tr>
 
