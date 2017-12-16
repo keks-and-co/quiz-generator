@@ -16,7 +16,8 @@ class CreateQuizAnswersTable extends Migration
         Schema::create('quiz_answers', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('quiz_id')->unsigned();
-            $table->boolean('is_finished')->default(false);
+            $table->dateTime('started_at');
+            $table->dateTime('finished_at')->nullable();
             $table->timestamps();
         });
     }
