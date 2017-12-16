@@ -1,7 +1,5 @@
 <?php
 
-Auth::routes();
-
 Route::get('/registration', [
     'as'   => 'admin.registration',
     'uses' => 'Auth\RegisterController@showRegistrationForm',
