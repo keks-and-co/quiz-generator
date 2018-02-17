@@ -194,7 +194,7 @@ class QuizzesController extends AdminController
         $form->method = 'post';
         $form->action = route('quizzes.share', [$id]);
 
-        $title = 'Share a Quiz';
+        $title = 'Share "' . $quiz->name . '"';
         $this->title(['', 'Quizzes', $title]);
 
         return view('quizzes.share', compact('quiz', 'form', 'title'));
