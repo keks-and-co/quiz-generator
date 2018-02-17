@@ -145,7 +145,9 @@ class QuizzesController extends AdminController
             $this->saveAnswers($question, $answers, $type);
         }
 
-        if (!$model->update($form->request()->input('quiz'))) {
+        $quiz = ['is_anonymous' => $form->request()->has('is_anonymous')] + $form->request()->input('quiz');
+
+        if (!$model->update($quiz)) {
             flash()->error(sprintf('The quiz "%s" could not be updated.', $model->name));
 
             return back()->withInput($form->all());
