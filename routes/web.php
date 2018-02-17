@@ -16,6 +16,14 @@ Route::group(['middleware' => 'auth'], function () {
         'as'   => 'administr.dashboard.index',
     ]);
 
+    Route::get('quizzes/{id}/share', [
+        'uses' => 'QuizzesController@share',
+        'as'   => 'quizzes.share',
+    ]);
+    Route::post('quizzes/{id}/share', [
+        'uses' => 'QuizzesController@postShare',
+        'as'   => 'quizzes.share',
+    ]);
     Route::resource('quizzes', 'QuizzesController');
     Route::resource('quizzes.questions', 'QuestionsController');
     Route::resource('quizzes.answers', 'QuizAnswersController');

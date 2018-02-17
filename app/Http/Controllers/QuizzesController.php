@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Forms\ShareQuizForm;
 use App\Models\Question;
 use App\Models\QuestionAnswer;
 use App\Models\QuestionType;
@@ -179,5 +180,39 @@ class QuizzesController extends AdminController
                 'value' => $answer,
             ]);
         }
+    }
+
+    public function share($id, ShareQuizForm $form)
+    {
+        $quiz = Quiz::find($id);
+
+        if(!$quiz) {
+            flash()->error('The quiz you are trying to share does not exist.');
+            return redirect()->route('quizzes.index');
+        }
+
+        $form->method = 'post';
+        $form->action = route('quizzes.share', [$id]);
+
+        $title = 'Share a Quiz';
+        $this->title(['', 'Quizzes', $title]);
+
+        return view('quizzes.share', compact('quiz', 'form', 'title'));
+    }
+
+    public function postShare($id, ShareQuizForm $form)
+    {
+        $recepients = explode(',', $form->request()->get('recepients'));
+
+        $recepients = array_filter($recepients, function($email) {
+            return filter_var($email, FILTER_VALIDATE_EMAIL);
+        });
+
+        if(count($recepients) == 0) {
+            flash()->error('The provided comma-separated list of recepients does not contain any valid emails. Please, provide valid email addresses in order to share the quiz.');
+            return back()->withInput($form->request()->all());
+        }
+
+        dd($recepients);
     }
 }
