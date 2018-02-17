@@ -45,7 +45,9 @@ class QuizzesListView extends ListView
                     ->action('share', '')
                     ->icon('fa fa-share-square-o')
                     ->define(function (Action $action, array $row) {
-                        $action->url(route('quizzes.share', [$row['id']]));
+                        $action
+                            ->showIf($row['is_active'])
+                            ->url(route('quizzes.share', [$row['id']]));
                     });
 
                 $actions
