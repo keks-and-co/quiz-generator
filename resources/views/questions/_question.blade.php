@@ -6,7 +6,7 @@
             <div class="pull-right">
                 @if(
                     (isset($slug) && $slug !== 'text')
-                    || (isset($question) && $question->type->slug !== 'text')
+                    || (isset($question, $question->type, $question->type->slug) && $question->type->slug !== 'text')
                 )
                 <button type="button" class="btn btn-default add-answer" data-question-id="{{ $question->id or $index }}" title="Add Answer">
                     <span class="fa fa-plus"></span>
@@ -27,17 +27,20 @@
 
         @if(
             (isset($slug) && $slug !== 'text')
-            || (isset($question) && $question->type->slug !== 'text')
+            || (isset($question, $question->type, $question->type->slug) && $question->type->slug !== 'text')
         )
         <label>Answers:</label>
         <div class="answers list-group" id="answers-{{ $question->id or $index }}">
-            @foreach(old('question.' . object_get($question, 'id', $index) . '.answer', []) as $answerId => $answer)
-                @include('questions._answer', [
-                    'index' => object_get($question, 'id', $index),
-                    'value' => $answer,
-                    'answerId' => $answerId,
-                ])
-            @endforeach
+
+            @if(isset($answers) && count($answers))
+                @foreach($answers as $answerId => $answer)
+                    @include('questions._answer', [
+                        'index' => isset($question, $question->id) ? $question->id : $index,
+                        'value' => $answer,
+                        'answerId' => $answerId,
+                    ])
+                @endforeach
+            @endif
 
             @if(isset($question, $question->answers))
                 @foreach($question->answers as $answer)
