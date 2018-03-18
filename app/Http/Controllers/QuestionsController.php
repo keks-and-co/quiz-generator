@@ -24,6 +24,7 @@ class QuestionsController extends AdminController
             'type' => $request->get('type'),
             'type_id' => $request->get('type_id'),
             'slug' => $slug,
+            'value' => '',
         ]);
     }
 
@@ -31,6 +32,8 @@ class QuestionsController extends AdminController
     {
         return view('questions._answer', [
             'index' => $request->get('index'),
+            'answerId' => '',
+            'value' => '',
         ]);
     }
 

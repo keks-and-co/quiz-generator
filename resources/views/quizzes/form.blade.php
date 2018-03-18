@@ -36,6 +36,12 @@
                             </legend>
 
                             <div id="quiz-questions">
+                                @foreach(old('question', []) as $index => $question)
+                                    @include('questions._question', [
+                                        'index' => $index,
+                                    ] + $question)
+                                @endforeach
+
                                 @if(isset($quiz))
                                     @foreach($quiz->questions as $question)
                                         @include('questions._question', [
